@@ -1,0 +1,55 @@
+.my-from {
+    background-color: #fafafa;
+    border: 1px solid #e5e5e5;
+    margin-bottom: 20px;
+}
+
+.my-from h3 {
+    padding: 0 12px;
+}
+
+.my-from h3 .spinner{
+    float: none;
+}
+
+.my-from header {
+    border-top: 1px solid #e5e5e5;
+}
+
+.my-from header .my-from__list li {
+    height: 20px;
+}
+
+.my-from__list {
+    margin: 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+
+
+.my-from__list .con_list_item {
+    position: relative;
+    color: #555;
+    border: 1px solid #ededed;
+    margin-top: 18px;
+    background: #fff;
+    border-left: none;
+    border-right: none;
+    display: flex;
+}
+
+.my-from__list .con_list_item .item {
+    padding: 10px 20px;
+    border-right: 1px solid #ededed;
+}
+
+.my-from__list .con_list_item .title {
+    color: #777;
+    line-height: 2;
+}
+
+.my-from__list .con_list_item .content {
+    font-size: 14px;
+    line-height: 2;
+}
+
