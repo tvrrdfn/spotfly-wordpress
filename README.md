@@ -1,6 +1,15 @@
 ### 文件说明
 1. plugins文件夹是在 wordpress/wp-content/plugins/json-api
 2. themes文件夹目录：wordpress/wp-content/themes/futurecap
+3. 提高上传文件限制：
+```
+在.htaccess添加一下代码：
+
+    php_value upload_max_filesize 200M
+    php_value post_max_size 200M
+    php_value max_execution_time 600
+    php_value max_input_time 600
+```
 
 ### 安装说明
 1. 安装插件JSON API

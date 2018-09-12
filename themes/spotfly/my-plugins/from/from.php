@@ -5,8 +5,8 @@ wp_enqueue_script('jquery-ui-sortable');
 
 wp_enqueue_style('my-styles', get_theme_file_uri('/style.css'), false, '1.0');
 wp_enqueue_style('my-from-styles', get_theme_file_uri('/my-plugins/from/from.css'), false, '1.0');
-wp_register_script('my-script', get_theme_file_uri('/common.js'), array('jquery'), '1.0', true);
-wp_register_script('my-from-script', get_theme_file_uri('/my-plugins/from/from.js'), array('jquery'), '1.0', true);
+wp_register_script('my-script', get_theme_file_uri('/common.js'), array('jquery'), false, true);
+wp_register_script('my-from-script', get_theme_file_uri('/my-plugins/from/from.js'), array('jquery'), false, true);
 wp_enqueue_script('my-script');
 wp_enqueue_script('my-from-script');
 ?>

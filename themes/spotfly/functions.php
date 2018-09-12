@@ -9,6 +9,10 @@
  * @since 1.0
  */
 
+@ini_set('upload_max_size', '200M');
+@ini_set('post_max_size', '200M');
+@ini_set('max_execution_time', '300');
+
 if (function_exists('add_theme_support')) {
 	add_theme_support('post-thumbnails');
 }
@@ -25,7 +29,7 @@ remove_action('admin_init', '_maybe_update_themes'); // 禁止 WordPress 更新�
 add_action('admin_menu', function () {
 	// remove_menu_page('index.php'); //仪表盘
 	remove_menu_page('upload.php'); //多媒体
-	remove_menu_page('edit.php?post_type=page'); //页面
+	// remove_menu_page('edit.php?post_type=page'); //页面
 	remove_menu_page('edit-comments.php'); //评论
 	remove_menu_page('plugins.php'); //插件
 	remove_menu_page('tools.php'); //工具
@@ -135,7 +139,7 @@ add_action('admin_menu', 'remove_submenus');
 //修改后台LOGO图标
 function custom_logo() {
 	echo '<style type="text/css">
-    #header-logo { background-image: url(' . get_bloginfo('template_directory') . '/images/login_logo.png) !important; width: 100% !important; background-size: cover !important;}
+    #header-logo { background-image: url(' . get_bloginfo('template_directory') . '/images/login_logo.png) !important; width: 100% !important; background-size: 100% 100% !important;}
     </style>';
 }
 add_action('admin_head', 'custom_logo');
@@ -143,7 +147,7 @@ add_action('admin_head', 'custom_logo');
 //修改登录页面LOGO
 function custom_login_logo() {
 	echo '<style type="text/css">
-    h1 a { background-image:url(' . get_bloginfo('template_directory') . '/images/login_logo.png?v=2) !important; width: 100% !important; background-size: cover !important;}
+    h1 a { background-image:url(' . get_bloginfo('template_directory') . '/images/login_logo.png?v=2) !important; width: 100% !important; background-size: 100% 100% !important;}
     </style>';
 }
 add_action('login_head', 'custom_login_logo');
@@ -203,6 +207,34 @@ function my_from_info() {
 		echo 'dadad';
 		//若提交了表单，则保存变量
 		update_option('my-from-info', $_POST['my-from-info']);
+	}
+	die;
+}
+
+/**
+ * 资料下载管理
+ */
+function wpdocs_register_my_video() {
+	add_menu_page('MyVideo', '资料下载管理', 'manage_options', 'my-video', 'myVideoSettings');
+}
+function myVideoSettings() {
+	require get_template_directory() . '/my-plugins/video/video.php';
+}
+add_action('admin_menu', 'wpdocs_register_my_video');
+add_action('wp_ajax_nopriv_my_video_info', 'my_video_info');
+add_action('wp_ajax_my_video_info', 'my_video_info');
+function my_video_info() {
+	global $wpdb, $post;
+
+	var_dump($_POST);
+	delete_option('my-video-type-info');
+
+	//若值为空，则删除这行数据
+	if (empty($_POST['my-video-info'])) {
+		delete_option('my-video-info');
+	} else {
+		//若提交了表单，则保存变量
+		update_option('my-video-info', $_POST['my-video-info']);
 	}
 	die;
 }

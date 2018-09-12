@@ -10,7 +10,7 @@
     right: 0;
     overflow-x: hidden;
     overflow-y: auto;
-    z-index: 70;
+    z-index: 9999;
     line-height: 1;
 }
 

@@ -1,5 +1,5 @@
 var My_Helpers = {
-    getDbUrl: 'http://byu4470380001.my3w.com/manage/?json=settings/my_from',
+    getDbUrl: location.origin + '/manage/?json=settings/my_from',
     current_db: [],
     current_dom: jQuery('#my-content__wrap'),
     current_edit_info: null, //当前编辑的信息
