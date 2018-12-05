@@ -157,7 +157,7 @@ add_filter('pre_site_transient_update_core', create_function('$a', "return null;
 
 //修改页脚信息
 function modify_footer_admin() {
-	echo '明势资本.';
+	echo '际泉熙.';
 }
 add_filter('admin_footer_text', 'modify_footer_admin');
 
@@ -235,6 +235,34 @@ function my_video_info() {
 	} else {
 		//若提交了表单，则保存变量
 		update_option('my-video-info', $_POST['my-video-info']);
+	}
+	die;
+}
+
+/**
+ * 媒体链接管理
+ */
+function wpdocs_register_my_news() {
+	add_menu_page('MyNews', '媒体链接管理', 'manage_options', 'my-news', 'myNewsSettings');
+}
+function myNewsSettings() {
+	require get_template_directory() . '/my-plugins/news/news.php';
+}
+add_action('admin_menu', 'wpdocs_register_my_news');
+add_action('wp_ajax_nopriv_my_news_info', 'my_news_info');
+add_action('wp_ajax_my_news_info', 'my_news_info');
+function my_news_info() {
+	global $wpdb, $post;
+
+	var_dump($_POST);
+	delete_option('my-news-type-info');
+
+	//若值为空，则删除这行数据
+	if (empty($_POST['my-news-info'])) {
+		delete_option('my-news-info');
+	} else {
+		//若提交了表单，则保存变量
+		update_option('my-news-info', $_POST['my-news-info']);
 	}
 	die;
 }

@@ -12,5 +12,11 @@ class JSON_API_Settings_Controller {
 			"data" => get_option('my-video-info'),
 		);
 	}
+
+	public function my_news() {
+		return array(
+			"data" => get_option('my-news-info'),
+		);
+	}
 }
 ?>
