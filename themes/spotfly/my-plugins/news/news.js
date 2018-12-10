@@ -95,10 +95,18 @@ var My_Helpers = {
                             '</li>' +
                             '<li class="clearfix">' +
                                 '<div class="label">' +
-                                    '媒体链接链接:' +
+                                    '媒体链接地址:' +
                                 '</div>' +
                                 '<div class="value">' +
                                     '<input class="my-input" type="text" name="link" value="' + item.link + '">' +
+                                '</div>' +
+                            '</li>' +
+                            '<li class="clearfix">' +
+                                '<div class="label">' +
+                                    '媒体发布日期:' +
+                                '</div>' +
+                                '<div class="value">' +
+                                    '<input class="my-input" type="text" name="date" value="' + item.date + '">' +
                                 '</div>' +
                             '</li>' +
                             '<li class="clearfix">' +
@@ -182,13 +190,15 @@ var My_Helpers = {
         var id = ulDom.data('id');
         var name = ulDom.find('input[name=name]').get(0).value;
         var link = ulDom.find('input[name=link]').get(0).value;
+        var date = ulDom.find('input[name=date]').get(0).value;
         var order = ulDom.find('input[name=order]').get(0).value;
 
-        if(!name || !link) {
+        if(!name || !link || !date) {
             let tips = [];
 
             if(!name) tips.push('名字');
             if(!link) tips.push('媒体链接链接地址')
+            if(!date) tips.push('媒体链接发布日期')
 
             alert('请填写完整信息！' + tips.join('、') + '不能为空！')
             return false;
@@ -198,6 +208,7 @@ var My_Helpers = {
             id: id,
             name: name,
             link: link,
+            date: date,
             order: order,
         };
     },
@@ -250,6 +261,7 @@ var My_Helpers = {
             id: Pubilc_Helpers.uuid(),
             name: '',
             link: '',
+            date: '',
             order: (My_Helpers.current_db.length + 1) * 10
         }
     },
